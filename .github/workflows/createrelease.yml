@@ -1,0 +1,116 @@
+name: CreateRelease
+
+on: 
+  workflow_dispatch:
+    inputs:
+      releaseTag:
+        description: 'Release tag:'     
+        required: true
+      releaseTitle:
+        description: 'Release title:'     
+        required: true
+        default: 'Release 1.x'
+      releaseDescription:
+        description: 'Description of release:'     
+        required: false
+        default: 'Bug fixes and general improvements'
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build project
+      run: dotnet build --no-restore
+    - name: Publish project (Windows, x86)
+      run: dotnet publish --runtime win-x86 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
+    - name: Publish project (Windows, x64)
+      run: dotnet publish --runtime win-x64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
+    - name: Publish project (Windows, ARM64)
+      run: dotnet publish --runtime win-arm64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
+    - name: Publish project (Linux, x64)
+      run: dotnet publish --runtime linux-x64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
+    - name: Publish project (Linux, ARM64)
+      run: dotnet publish --runtime linux-arm64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
+    - name: Publish project (macOS, x64)
+      run: dotnet publish --runtime osx.10.10-x64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
+    - name: Publish project (macOS, ARM64)
+      run: dotnet publish --runtime osx.11.0-arm64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
+
+    - name: Create Draft Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.event.inputs.releaseTag }}
+        release_name: ${{ github.event.inputs.releaseTitle }}
+        body: ${{ github.event.inputs.releaseDescription }}
+        draft: false
+        prerelease: false
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/win-x86/publish/FfmpegAudioMetadata.exe
+        asset_name: FfmpegAudioMetadata-Win-x86.exe
+        asset_content_type: application/vnd.microsoft.portable-executable
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/win-x64/publish/FfmpegAudioMetadata.exe
+        asset_name: FfmpegAudioMetadata-Win-x64.exe
+        asset_content_type: application/vnd.microsoft.portable-executable
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/win-arm64/publish/FfmpegAudioMetadata.exe
+        asset_name: FfmpegAudioMetadata-Win-ARM64.exe
+        asset_content_type: application/vnd.microsoft.portable-executable
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/linux-x64/publish/FfmpegAudioMetadata
+        asset_name: FfmpegAudioMetadata-Linux-x64
+        asset_content_type: application/x-elf
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/linux-arm64/publish/FfmpegAudioMetadata
+        asset_name: FfmpegAudioMetadata-Linux-ARM64
+        asset_content_type: application/x-elf
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/osx.11.0-arm64/publish/FfmpegAudioMetadata
+        asset_name: FfmpegAudioMetadata-macOS-ARM64-UNTESTED
+        asset_content_type: application/x-elf
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/osx.10.10-x64/publish/FfmpegAudioMetadata
+        asset_name: FfmpegAudioMetadata-macOS-x64-UNTESTED
+        asset_content_type: application/x-elf
+        
