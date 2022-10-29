@@ -62,55 +62,55 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/win-x86/publish/FfmpegAudioMetadata.exe
-        asset_name: FfmpegAudioMetadata-Win-x86.exe
+        asset_path: /home/runner/work/ffmpeg-audio-metadata/ffmpeg-audio-metadata/bin/Release/net6.0/win-x86/publish/ffmpeg-audio-metadata.exe
+        asset_name: ffmpeg-audio-metadata-Win-x86.exe
         asset_content_type: application/vnd.microsoft.portable-executable
     - uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/win-x64/publish/FfmpegAudioMetadata.exe
-        asset_name: FfmpegAudioMetadata-Win-x64.exe
+        asset_path: /home/runner/work/ffmpeg-audio-metadata/ffmpeg-audio-metadata/bin/Release/net6.0/win-x64/publish/ffmpeg-audio-metadata.exe
+        asset_name: ffmpeg-audio-metadata-Win-x64.exe
         asset_content_type: application/vnd.microsoft.portable-executable
     - uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/win-arm64/publish/FfmpegAudioMetadata.exe
-        asset_name: FfmpegAudioMetadata-Win-ARM64.exe
+        asset_path: /home/runner/work/ffmpeg-audio-metadata/ffmpeg-audio-metadata/bin/Release/net6.0/win-arm64/publish/ffmpeg-audio-metadata.exe
+        asset_name: ffmpeg-audio-metadata-Win-ARM64.exe
         asset_content_type: application/vnd.microsoft.portable-executable
     - uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/linux-x64/publish/FfmpegAudioMetadata
-        asset_name: FfmpegAudioMetadata-Linux-x64
+        asset_path: /home/runner/work/ffmpeg-audio-metadata/ffmpeg-audio-metadata/bin/Release/net6.0/linux-x64/publish/ffmpeg-audio-metadata
+        asset_name: ffmpeg-audio-metadata-Linux-x64
         asset_content_type: application/x-elf
     - uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/linux-arm64/publish/FfmpegAudioMetadata
-        asset_name: FfmpegAudioMetadata-Linux-ARM64
+        asset_path: /home/runner/work/ffmpeg-audio-metadata/ffmpeg-audio-metadata/bin/Release/net6.0/linux-arm64/publish/ffmpeg-audio-metadata
+        asset_name: ffmpeg-audio-metadata-Linux-ARM64
         asset_content_type: application/x-elf
     - uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/osx.11.0-arm64/publish/FfmpegAudioMetadata
-        asset_name: FfmpegAudioMetadata-macOS-ARM64-UNTESTED
+        asset_path: /home/runner/work/ffmpeg-audio-metadata/ffmpeg-audio-metadata/bin/Release/net6.0/osx.11.0-arm64/publish/ffmpeg-audio-metadata
+        asset_name: ffmpeg-audio-metadata-macOS-ARM64-UNTESTED
         asset_content_type: application/x-elf
     - uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /home/runner/work/FfmpegAudioMetadata/FfmpegAudioMetadata/bin/Release/net6.0/osx.10.10-x64/publish/FfmpegAudioMetadata
-        asset_name: FfmpegAudioMetadata-macOS-x64-UNTESTED
+        asset_path: /home/runner/work/ffmpeg-audio-metadata/ffmpeg-audio-metadata/bin/Release/net6.0/osx.10.10-x64/publish/ffmpeg-audio-metadata
+        asset_name: ffmpeg-audio-metadata-macOS-x64-UNTESTED
         asset_content_type: application/x-elf
         
