@@ -3,14 +3,14 @@
 Here’s a table with a few audio encoders and extensions to use with ffmpeg-audio-metadata. 
 
 <aside>
-💡 Remember to pass both --codec and --extension as arguments when opening the application from the command line.
+💡 Remember to pass both ` --codec` and ` --extension` as arguments when opening the application from the command line.
 
 </aside>
 
-| Audio format: | ffmpeg encoders: | VLC encoders: | Extension: |
+| Audio format: | ffmpeg encoders: (` --codec`) | VLC encoders: (` --codec`) | Extension: |
 | --- | --- | --- | --- |
 | MP3 | libmp3lame | mp3 | mp3 |
-| Advanced Audio Coding (the M4A/MP4 files) | - aac (more common)<br />- libfdk_aac (best audio quality, requires an ffmpeg compatible build) | mp4<br />Note: there might be some errors in the metadata passing. | m4a / mp4 |
+| Advanced Audio Coding (the M4A/MP4 files) | - aac (more common)<br />- libfdk_aac (best audio quality, requires an ffmpeg compatible build) | mp4<br />Note: there might be some errors in the metadata copy. | m4a / mp4 |
 | Opus (the best one) | libopus | opus | ogg |
 | Vorbis | libvorbis | vorbis | ogg |
 | Free Lossless Audio Codec | flac | flac | ogg / flac |
